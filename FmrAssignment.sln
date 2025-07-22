@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35919.96
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FmrClient", "FmrClient\FmrClient.csproj", "{3391D87B-0291-4176-AACE-0E27CCEECF55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FmrServer", "FmrServer\FmrServer.csproj", "{509BF4DE-253E-459F-A744-864A21B688B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FmrModels", "FmrModels\FmrModels.csproj", "{10DF0096-8977-46CC-8B1E-A8CF73642C1E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3391D87B-0291-4176-AACE-0E27CCEECF55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3391D87B-0291-4176-AACE-0E27CCEECF55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3391D87B-0291-4176-AACE-0E27CCEECF55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3391D87B-0291-4176-AACE-0E27CCEECF55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{509BF4DE-253E-459F-A744-864A21B688B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{509BF4DE-253E-459F-A744-864A21B688B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{509BF4DE-253E-459F-A744-864A21B688B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{509BF4DE-253E-459F-A744-864A21B688B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10DF0096-8977-46CC-8B1E-A8CF73642C1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10DF0096-8977-46CC-8B1E-A8CF73642C1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10DF0096-8977-46CC-8B1E-A8CF73642C1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10DF0096-8977-46CC-8B1E-A8CF73642C1E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7F6885A6-E070-4232-92FF-952333FDEB6A}
+	EndGlobalSection
+EndGlobal
