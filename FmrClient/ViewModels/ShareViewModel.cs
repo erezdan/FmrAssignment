@@ -36,7 +36,7 @@ public partial class ShareViewModel : ObservableObject
     private DateTime updateTime;
 
     public double PercentageChange =>
-        BasePrice != 0 ? ((LastPrice - BasePrice) / BasePrice) * 100 : 0;
+        BasePrice != 0 && LastPrice != 0 ? ((LastPrice - BasePrice) / BasePrice) * 100 : 0;
 
     // 🔄 This method is called automatically when LastPrice changes
     partial void OnLastPriceChanged(double value)
