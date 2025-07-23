@@ -13,7 +13,6 @@ public partial class ShareViewModel : ObservableObject
     }
 
     public int Id => Model.Id;
-    public string Symbol => Model.Symbol;
     public string Name => Model.Name;
     public double BasePrice => Model.BasePrice;
 

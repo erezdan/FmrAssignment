@@ -6,7 +6,7 @@
         xmlns:vm="clr-namespace:FmrClient.ViewModels"
         xmlns:converters="clr-namespace:FmrClient.Converters"
         mc:Ignorable="d"
-        Title="FMR Market Monitor" Height="800" Width="1300" Background="#111">
+        Title="FMR Market Monitor" Height="800" Width="1200" Background="#111">
 
     <Window.Resources>
         <!-- Font -->
@@ -102,7 +102,6 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="מספר נייר" Binding="{Binding Id}" />
-                <DataGridTextColumn Header="סימבול" Binding="{Binding Symbol}" />
                 <DataGridTextColumn Header="שם נייר" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="מחיר בסיס" Binding="{Binding BasePrice, Converter={StaticResource RoundedConverter}}" />
                 <DataGridTextColumn Header="מחיר ביקוש" Binding="{Binding BidPrice, Converter={StaticResource RoundedConverter}}" />

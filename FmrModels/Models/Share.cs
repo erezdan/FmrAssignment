@@ -2,7 +2,6 @@
 public class Share
 {
     public int Id { get; set; }
-    public string Symbol { get; set; } = string.Empty;
     public string Name { get; set; } = string.Empty;
     public double BasePrice { get; set; }
 

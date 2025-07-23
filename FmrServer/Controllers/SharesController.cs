@@ -26,9 +26,9 @@ public class SharesController : ControllerBase
 
     // GET api/shares/updates
     [HttpGet("updates")]
-    public ActionResult<List<Share>> GetUpdatedShares()
+    public IActionResult GetUpdatesSince([FromQuery] DateTime since)
     {
-        var updatedShares = _shareService.GetUpdatedShares();
-        return Ok(updatedShares);
+        var updated = _shareService.GetUpdatedSharesSince(since);
+        return Ok(updated);
     }
 }

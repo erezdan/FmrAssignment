@@ -14,6 +14,7 @@ public partial class MainViewModel : ObservableObject
     private readonly HttpClient _httpClient;
     private readonly CancellationTokenSource _cts = new();
     private Task? _backgroundTask;
+    private DateTime _lastUpdateTime = DateTime.Now;
 
     public ObservableCollection<ShareViewModel> Shares { get; } = new();
 
@@ -70,7 +71,8 @@ public partial class MainViewModel : ObservableObject
     {
         try
         {
-            var updates = await _httpClient.GetFromJsonAsync<List<Share>>("api/shares/updates");
+            string url = $"api/shares/updates?since={_lastUpdateTime.ToUniversalTime():yyyy-MM-ddTHH:mm:ss.fffffffZ}";
+            var updates = await _httpClient.GetFromJsonAsync<List<Share>>(url);
             if (updates == null) return;
 
             App.Current.Dispatcher.Invoke(() =>
@@ -93,6 +95,11 @@ public partial class MainViewModel : ObservableObject
         catch (Exception ex)
         {
             // TODO: Handle error (logging / UI alert)
+        }
+        finally
+        {
+            // Ensure the last update time is set even if no updates were received
+            _lastUpdateTime = DateTime.Now;
         }
     }
 

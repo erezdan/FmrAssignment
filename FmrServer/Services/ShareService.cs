@@ -21,12 +21,11 @@ public class ShareService : IDisposable
             _shares.Add(new Share
             {
                 Id = i,
-                Symbol = $"SYM{i}",
                 Name = $"נייר {i}",
                 BasePrice = randPrice,
                 LastPrice = randPrice,
-                BidPrice = randPrice,
-                AskPrice = randPrice,
+                BidPrice = 0,
+                AskPrice = 0,
                 BidQuantity = 0,
                 AskQuantity = 0,
                 UpdateTime = DateTime.Now
@@ -78,7 +77,7 @@ public class ShareService : IDisposable
                 share.BidPrice = Math.Round(share.LastPrice * (1 - _random.NextDouble() * 0.01), 2);
                 share.AskQuantity = _random.Next(10, 500);
                 share.BidQuantity = _random.Next(10, 500);
-                share.UpdateTime = DateTime.Now;
+                share.UpdateTime = DateTime.UtcNow;
 
                 _updatedShareIds.Add(share.Id);
             }
@@ -93,12 +92,12 @@ public class ShareService : IDisposable
         }
     }
 
-    public List<Share> GetUpdatedShares()
+    public List<Share> GetUpdatedSharesSince(DateTime since)
     {
         lock (_shares)
         {
             return _shares
-                .Where(s => _updatedShareIds.Contains(s.Id))
+                .Where(s => s.UpdateTime > since)
                 .Select(s => CloneShare(s))
                 .ToList();
         }
@@ -107,7 +106,6 @@ public class ShareService : IDisposable
     private Share CloneShare(Share s) => new()
     {
         Id = s.Id,
-        Symbol = s.Symbol,
         Name = s.Name,
         BasePrice = s.BasePrice,
         BidPrice = s.BidPrice,
