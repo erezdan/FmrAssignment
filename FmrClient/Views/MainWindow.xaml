@@ -6,7 +6,7 @@
         xmlns:vm="clr-namespace:FmrClient.ViewModels"
         xmlns:converters="clr-namespace:FmrClient.Converters"
         mc:Ignorable="d"
-        Title="FMR Market Monitor" Height="800" Width="1200" Background="#111">
+        Title="FMR Market Monitor" Height="800" Width="1400" Background="#111">
 
     <Window.Resources>
         <!-- Font -->
@@ -109,6 +109,8 @@
                 <DataGridTextColumn Header="מחיר היצע" Binding="{Binding AskPrice, Converter={StaticResource RoundedConverter}}" />
                 <DataGridTextColumn Header="כמות היצע" Binding="{Binding AskQuantity}" />
                 <DataGridTextColumn Header="מחיר אחרון" Binding="{Binding LastPrice, Converter={StaticResource RoundedConverter}}" />
+                <DataGridTextColumn Header="סה״כ ביקוש" Binding="{Binding TotalBid, StringFormat=N2}" />
+                <DataGridTextColumn Header="סה״כ היצע" Binding="{Binding TotalAsk, StringFormat=N2}" />
                 <DataGridTextColumn Header="שינוי באחוזים"
                     Binding="{Binding PercentageChange, Converter={StaticResource PercentageFormatterConverter}}">
                     <DataGridTextColumn.ElementStyle>
