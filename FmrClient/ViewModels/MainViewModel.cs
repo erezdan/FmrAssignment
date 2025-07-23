@@ -3,17 +3,17 @@ using FmrModels;
 using System.Collections.ObjectModel;
 using System.Net.Http.Json;
 using FmrClient.ViewModels;
-using FmrAssignment.ViewModels;
-using FmrAssignment;
 using FmrModels.Models;
 using System.Net.Http;
+using FmrAssignment.ViewModels;
 
 namespace FmrClient.ViewModels;
 
 public partial class MainViewModel : ObservableObject
 {
     private readonly HttpClient _httpClient;
-    private readonly System.Timers.Timer _timer;
+    private readonly CancellationTokenSource _cts = new();
+    private Task? _backgroundTask;
 
     public ObservableCollection<ShareViewModel> Shares { get; } = new();
 
@@ -26,9 +26,7 @@ public partial class MainViewModel : ObservableObject
 
         LoadInitialDataAsync();
 
-        _timer = new System.Timers.Timer(3000);
-        _timer.Elapsed += async (_, _) => await RefreshUpdatedSharesAsync();
-        _timer.Start();
+        _backgroundTask = Task.Run(() => RunBackgroundUpdateLoopAsync(_cts.Token));
     }
 
     private async void LoadInitialDataAsync()
@@ -41,6 +39,26 @@ public partial class MainViewModel : ObservableObject
                 foreach (var share in shares)
                     Shares.Add(new ShareViewModel(share));
             }
+        }
+        catch (Exception ex)
+        {
+            // TODO: Handle error (logging / UI alert)
+        }
+    }
+
+    private async Task RunBackgroundUpdateLoopAsync(CancellationToken cancellationToken)
+    {
+        try
+        {
+            while (!cancellationToken.IsCancellationRequested)
+            {
+                await RefreshUpdatedSharesAsync();
+                await Task.Delay(3000, cancellationToken);
+            }
+        }
+        catch (TaskCanceledException)
+        {
+            // Expected when token is cancelled
         }
         catch (Exception ex)
         {
@@ -76,5 +94,19 @@ public partial class MainViewModel : ObservableObject
         {
             // TODO: Handle error (logging / UI alert)
         }
+    }
+
+    public void Dispose()
+    {
+        _cts.Cancel();
+        try
+        {
+            _backgroundTask?.Wait();
+        }
+        catch (AggregateException ex) when (ex.InnerException is TaskCanceledException)
+        {
+            // Ignored
+        }
+        _cts.Dispose();
     }
 }

@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace FmrAssignment
+namespace FmrClient
 {
     /// <summary>
     /// Interaction logic for App.xaml

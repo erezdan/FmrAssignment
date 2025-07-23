@@ -10,8 +10,8 @@ namespace FmrClient.Converters
         {
             if (value is double d)
             {
-                string formatted = Math.Abs(d).ToString("0.##") + "%";
-                return d >= 0 ? formatted : "-" + formatted;
+                string formatted = "%" + Math.Abs(d).ToString("0.##");
+                return d >= 0 ? formatted : formatted + "-";
             }
 
             return value?.ToString() ?? string.Empty;
